@@ -1,0 +1,42 @@
+body {
+  padding: 0;
+  margin: 0;
+}
+
+html, body, #map {
+  height: 100%;
+  width: 100%;
+}
+
+.fruitsnap {
+  object-fit: cover;
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/*# popup {
+  width: 50px;
+  height: 100px;
+}*/
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  /*object-fit: cover;*/
+  width: 75px;
+  height: 75px;
+  text-align: center;
+}
+
+.losheaders {
+  /*font-size: x-small;*/
+  text-align: center;
+}
+
+.coordinates {
+  font-size: x-small;
+  text-align: center;
+}

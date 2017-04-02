@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FRUTA Libre{% block headTitle %}{% endblock headTitle %}</title>
+
+    {% load static %}
+
+    <!-- moved the following to be available from base... -->
+    <link rel="stylesheet" type="text/css" href="{% static 'frutaui/style.css' %}" />
+
+    <!-- copied the following to be available from base... -->
+    <!--<script src="{% static 'sw2webui/js/jquery-3.2.0.min.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'sw2webui/js/jquery-ui-1.12.1/jquery-ui.css' %}" />
+    <script src="{% static 'sw2webui/js/jquery-ui-1.12.1/jquery-ui.min.js' %}"></script>-->
+
+    {% block headScript %}{% endblock headScript %}
+
+</head>
+
+<body>
+
+    {% block body %}{% endblock body %}
+
+</body>
+
+</html>

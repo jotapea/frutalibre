@@ -1,0 +1,79 @@
+{% extends "frutaui/base.html" %}
+
+{% load static %}
+
+{% block headScript %}
+
+<!-- LEAFLET -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+
+{% endblock headScript %}
+
+{% block body %}
+
+<!-- http://bl.ocks.org/d3noob/7654694 -->
+<div id="map"></div>
+
+    <script>
+        var map = L.map('map').setView([18.25, -66.40], 8);
+        mapLink = 
+            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+        L.tileLayer(
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; ' + mapLink + ' Contributors',
+            maxZoom: 18,
+            }).addTo(map);
+
+{% if fruits %}
+
+    {% for fruitsnap in fruits %}
+        L.marker([{{ fruitsnap.lat }}, {{ fruitsnap.lng }}])
+                    .bindPopup(`
+                    <div id=\"popup\">
+                    <div class=\"logo\">
+                    FRUTA Libre<br><img style=\"border: 0;\" src=\"{% static 'frutaui/LOGO.png' %}\" class=\"logo\">
+                    </div>
+                    <br><br>
+                    <a href=\"{{ fruitsnap.imageUrl }}\"><img style=\"border: 0;\" src=\"{{ fruitsnap.imageUrl }}\" class=\"fruitsnap\"></a>
+                    <br>
+                    <div class=\"losheaders\"><b>{{ fruitsnap.fruit.name }}</b>
+                    <br>({{ fruitsnap.time|date:"Y-m-d, P" }})
+                    <br><div class=\"coordinates\">(lat:{{ fruitsnap.lat|floatformat:4 }}, lng:{{ fruitsnap.lng|floatformat:4 }})</div>
+                    </div>
+                    <br>
+                    Calidad: {{ fruitsnap.get_quality_display }}
+                    <br>
+                    Temporada: {{ fruitsnap.fruit.seasonDescription|truncatechars:60 }}
+                    </div>
+                    `, {
+                    maxWidth : 150})
+                    .addTo(map);
+    {% endfor %}
+
+{% else %}
+{% endif %}
+
+        // arr = [
+        //     [18.25, -66.44],
+        //     [18.26, -66.43],
+        //     [18.27, -66.42],
+        //     [18.28, -66.41],
+        // ];
+
+        // for (var i = 0, len = arr.length; i < len; i++) {
+        //     // someFn(arr[i]);
+        //     L.marker(arr[i])
+        //         .bindPopup("<b>Hello world!</b><br>I am a popup.")
+        //         .addTo(map);
+        // }
+
+        // var marker = L.marker([18.25, -66.40]).addTo(map);
+        // marker.bindPopup("<b>Hello world!</b><br>I am a popup."); //.openPopup();
+
+        // var marker = L.marker([18.26, -66.41]).addTo(map);
+        // marker.bindPopup("<b>Hello world!</b><br>I am a popup2."); //.openPopup();
+
+    </script>
+
+{% endblock body %}
