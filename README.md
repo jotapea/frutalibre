@@ -1,4 +1,4 @@
-# FRUTA Libre, energía a tu alcance * REMEMBER FROM SCRATCH GITHUB*
+# FRUTA Libre, energía a tu alcance
 
 ---
 
